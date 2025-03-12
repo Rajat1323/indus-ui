@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Check if the request is for the /form-io/ subdirectory
+RewriteCond %{REQUEST_URI} ^/form-io/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^form-io/(.*)$ /form-io/index.html [L]
+
+# Handle all other requests for the root path
+RewriteCond %{REQUEST_URI} !^/form-io/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.html [L]
