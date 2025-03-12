@@ -5,6 +5,8 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 import { SharedModule } from 'src/app/shared/models/shared.module';
 import { catchError } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { setCookie } from 'src/app/core/utils/cookie-utility';
+import { APP_KEYS } from 'src/app/core/utils/helper';
 
 @Component({
   selector: 'app-sign-in',
@@ -40,23 +42,24 @@ export class SignInComponent {
   showPassword: boolean = false;
 
   handleLoginFormSubmit() {
-    this.submitted = true;
-    this.message = { ...this.message, isSubmitting: true };
-    let password = btoa(this.formGroupContext.get('password')?.value ?? '');
-    let userName = this.formGroupContext.get('userName')?.value ?? '';
-    this.authContext.login({ userName, password })
-      .pipe(catchError(reason => {
-        this.message = { ...this.message, error: 'Invalid credentials!', isSubmitting: false };
-        throw new Error(reason.error);
-      }))
-      .subscribe((response: any) => {
-        this.message = { ...this.message, success: response.message, isSubmitting: false };
-        if (response.data) {
-          this.authContext.token = response.data;
-          this.authContext.tokenExpiry = response.expires_in;
-          this.router.navigate(['/dashboard/analytical']);
-        }
-        else this.message = { ...this.message, error: response.message };
-      });
+    if (this.formGroupContext.valid) {
+      this.submitted = true;
+      this.message = { ...this.message, isSubmitting: true };
+      let password = btoa(this.formGroupContext.get('password')?.value ?? '');
+      let userName = this.formGroupContext.get('userName')?.value ?? '';
+      this.authContext.login({ userName, password })
+        .pipe(catchError(reason => {
+          this.message = { ...this.message, error: 'Invalid credentials!', isSubmitting: false };
+          throw new Error(reason.error);
+        }))
+        .subscribe((response: any) => {
+          this.message = { ...this.message, success: response.message, isSubmitting: false };
+          if (response.data) {
+            setCookie(APP_KEYS.authToken,response.data.token);
+            this.router.navigate(['/']);
+          }
+          else this.message = { ...this.message, error: response.message };
+        });
+    }
   }
 }

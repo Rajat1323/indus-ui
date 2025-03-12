@@ -1,20 +1,24 @@
 import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
+import { setCookie } from '../utils/cookie-utility';
+import { APP_KEYS } from '../utils/helper';
+import { getQueryStringValue, removeQueryString } from '../utils/utility.func';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard {
   canActivate(route: ActivatedRouteSnapshot, authContext: AuthService, router: Router): boolean {
-    const token = route.queryParamMap.get('token');
-
-    if (token) {
-      authContext.token = token; // Set the token in AuthService
-      return true;
+   
+    if (getQueryStringValue('token')) {
+      setCookie(APP_KEYS.authToken, getQueryStringValue('token'));
+      removeQueryString();
     }
 
-    if (authContext.token) return true;
+    if (authContext.isAuthenticated()) {
+      return true;
+    }
 
     router.navigate(['/auth']);
     return false;
