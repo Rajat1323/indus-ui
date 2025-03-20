@@ -1,0 +1,22 @@
+<div class="flex h-screen w-screen">
+  <div class="auth-bg hidden flex-1 items-center justify-center bg-[#1f731f] bg-cover lg:flex">
+    <div class="w-full text-center text-white h-full p-2">
+        <img src="./assets/bg/bg.jpg" alt="dashboard widget" class="h-full w-full object-fill" />
+    </div>
+  </div>
+  <div class="flex flex-1 items-center justify-center bg-background">
+    <div class="max-w-md overflow-y-auto px-4 sm:w-[500px]">
+      <!-- Logo and text in a single line -->
+      <div class="flex items-center justify-center">
+        <div class="flex items-center space-x-2 rounded p-2">
+          <img src="assets/images/logo.png" class="h-16 w-12">
+          <p class="text-4xl font-semibold">
+            <span class="text-[#1f731f]">indus </span><span class="font-normal text-gray-600">TOWERS</span>
+          </p>
+        </div>
+      </div>
+      <!-- Route -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

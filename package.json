@@ -1,0 +1,93 @@
+{
+  "name": "angular-tailwind",
+  "displayName": "Indus GIS",
+  "version": "1.0.0",
+  "description": "Angular & Tailwind CSS Admin Dashboard Starter Kit, Free and Open Source",
+  "homepage": "https://github.com/luciano-work/angular-tailwind#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luciano-work/angular-tailwind.git"
+  },
+  "keywords": [
+    "angular",
+    "tailwind",
+    "starter-kit",
+    "tailwind-template",
+    "dark mode",
+    "open source"
+  ],
+  "author": "Indus",
+  "license": "MIT",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --open",
+    "build:prod": "ng build --base-href=https://10.240.12.247:4200/",
+    "build": "ng build && cd custom-form-builder && npm run build && cd ../web && mkdir -p form-io && cd .. && cp -r custom-form-builder/dist/browser/* web/form-io",
+    "build:dev": "ng build --base-href=https://10.240.12.247:4200/",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "e2e-ui": "npx playwright test --ui",
+    "prettier": "prettier --config ./.prettierrc --write \"src/{app,environments}/**/*{.ts,.html,.scss,.json}\"",
+    "prettier:verify": "prettier --config ./.prettierrc --check \"src/{app,environments}/**/*{.ts,.html,.scss,.json}\"",
+    "prettier:staged": "pretty-quick --staged",
+    "lint": "ng lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@ag-grid-community/styles": "^32.2.2",
+    "@angular/animations": "^17.3.0",
+    "@angular/cdk": "^17.3.10",
+    "@angular/common": "^17.3.0",
+    "@angular/compiler": "^17.3.0",
+    "@angular/core": "^17.3.0",
+    "@angular/forms": "^17.3.0",
+    "@angular/material": "^17.3.0",
+    "@angular/platform-browser": "^17.3.0",
+    "@angular/platform-browser-dynamic": "^17.3.0",
+    "@angular/router": "^17.3.0",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/typography": "^0.5.15",
+    "ag-grid-angular": "^33.1.1",
+    "ag-grid-community": "^33.1.1",
+    "angular-svg-icon": "^13.0.0",
+    "cesium": "^1.123.1",
+    "geojson": "^0.5.0",
+    "idb": "^8.0.0",
+    "ol": "^7.0.0",
+    "proj4": "^2.9.0",
+    "rxjs": "~7.4.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.14.2"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.3.7",
+    "@angular/cli": "^17.3.7",
+    "@angular/compiler-cli": "^17.3.0",
+    "@playwright/test": "^1.42.1",
+    "@types/cesium": "^1.67.14",
+    "@types/geojson": "^7946.0.14",
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^12.11.1",
+    "autoprefixer": "^10.4.20",
+    "cz-conventional-changelog": "^3.3.0",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "postcss": "^8.4.47",
+    "postcss-nested": "^7.0.2",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.12",
+    "tailwind-scrollbar": "^3.1.0",
+    "tailwindcss": "^3.4.13",
+    "typescript": "~5.4.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<div class="flex items-center justify-between px-5 pt-5">
+    <h2 class="text-lg font-semibold text-neutral-600 text-primary">Remarks</h2>
+    <mat-icon class="cursor-pointer text-neutral-700" (click)="closeDialog()" matTooltip="Close Dialog">close</mat-icon>
+</div>
+
+<div class="px-5 py-3">
+    <textarea class="mt-1 block w-full rounded-md border border-gray-300 p-2" type="text"
+        placeholder="Enter remarks here..." [formControl]="remarksControl" name="remarks"></textarea>
+</div>
+
+<div class="flex justify-end gap-4 px-5 pb-5">
+    <button type="submit"
+        class="rounded-lg border border-primary px-4 py-2 font-bold text-primary disabled:border-gray-300 disabled:text-gray-300 hover:bg-primary/10 disabled:hover:bg-transparent"
+        [disabled]="remarksControl.invalid" (click)="handleClickSubmit()">
+        Save and Close
+    </button>
+</div>
